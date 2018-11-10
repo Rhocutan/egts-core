@@ -3,6 +3,7 @@ package ru.egts.core.parser;
 
 import ru.egts.core.bean.service.teledata.PosData;
 
+import java.math.BigDecimal;
 import java.time.temporal.ChronoUnit;
 
 public class PosDataParser implements Parser<PosData> {
@@ -13,8 +14,9 @@ public class PosDataParser implements Parser<PosData> {
         posDataBuilder.navigationTime(
                 START_DATE.plus(makeLongFromInt(start, data), ChronoUnit.SECONDS)
         );
-        posDataBuilder.lat(makeLongFromInt(start + 4, data));
-        posDataBuilder.lon(makeLongFromInt(start + 8, data));
+
+        posDataBuilder.lat(BigDecimal.valueOf(makeLongFromInt(start + 4, data) * 90.0 / 4294967295L));
+        posDataBuilder.lon(BigDecimal.valueOf(makeLongFromInt(start + 8, data) * 180.0 / 4294967295L));
 
         // FLG
         final byte flg = data[12];

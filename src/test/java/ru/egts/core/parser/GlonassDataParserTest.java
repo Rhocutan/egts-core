@@ -35,24 +35,4 @@ public class GlonassDataParserTest {
         }
 
     }
-
-    @Test
-    public void parse2() throws IOException {
-        GlonassDataParser parser = new GlonassDataParser();
-        ClassLoader classLoader = getClass().getClassLoader();
-        try (FileInputStream fis = new FileInputStream(new File(classLoader.getResource("test-request.sbin").getFile()));
-             ByteArrayOutputStream bos = new ByteArrayOutputStream()) {
-            byte[] buffer = new byte[1024];
-            int l;
-            while ((l = fis.read(buffer)) != -1) {
-                bos.write(buffer, 0, l);
-            }
-            byte[] data = bos.toByteArray();
-
-            GlonassData glonassData = parser.parse(0, data);
-
-            assertThat(glonassData.getHeaderInfo(), Matchers.notNullValue());
-        }
-
-    }
 }

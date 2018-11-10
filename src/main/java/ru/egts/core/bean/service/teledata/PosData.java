@@ -4,14 +4,15 @@ import lombok.Builder;
 import lombok.Data;
 import ru.egts.core.bean.SubRecordData;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Builder
 @Data
 public class PosData implements SubRecordData {
     private LocalDateTime navigationTime;
-    private long lat;
-    private long lon;
+    private BigDecimal lat;
+    private BigDecimal lon;
 
     private boolean alth;
     private boolean lohs;
