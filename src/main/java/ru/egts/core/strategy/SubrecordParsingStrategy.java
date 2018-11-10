@@ -2,10 +2,7 @@ package ru.egts.core.strategy;
 
 
 import ru.egts.core.bean.SubRecordData;
-import ru.egts.core.parser.AdSensorsDataParser;
-import ru.egts.core.parser.ExtPosDataParser;
-import ru.egts.core.parser.Parser;
-import ru.egts.core.parser.PosDataParser;
+import ru.egts.core.parser.*;
 
 public class SubrecordParsingStrategy {
     private final Parser<? extends SubRecordData> parser;
@@ -15,7 +12,7 @@ public class SubrecordParsingStrategy {
             case 16: this.parser = new PosDataParser(); break;
             case 17: this.parser = new ExtPosDataParser(); break;
             case 18: this.parser = new AdSensorsDataParser(); break;
-         //   case 62: this.parser = new TrackDataParser(); break;
+            case 62: this.parser = new TrackDataParser(); break;
             default: this.parser = null;
         }
     }

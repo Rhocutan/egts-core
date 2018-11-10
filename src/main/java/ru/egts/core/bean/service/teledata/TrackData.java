@@ -12,6 +12,7 @@ import java.util.Collections;
 public class TrackData implements SubRecordData {
     private int structureAmount;
     private long absoluteTime;
+
     @Builder.Default
     private Collection<Tds> tdss = Collections.emptyList();
 }

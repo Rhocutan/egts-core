@@ -13,5 +13,8 @@ public class Tds implements ParsedObject {
 
     private long lat;
     private long lng;
-    private byte direction;
+    private int speed;
+    private int direction;
+
+    private int size;
 }
