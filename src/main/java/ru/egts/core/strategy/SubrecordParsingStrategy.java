@@ -5,7 +5,7 @@ import ru.egts.core.bean.SubRecordData;
 import ru.egts.core.parser.*;
 
 public class SubrecordParsingStrategy {
-    private final Parser<? extends SubRecordData> parser;
+    private final Parser<? extends SubRecordData, byte[]> parser;
 
     public SubrecordParsingStrategy(int type) {
         switch (type) {

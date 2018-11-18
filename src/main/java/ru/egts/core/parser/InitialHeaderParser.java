@@ -5,7 +5,7 @@ import ru.egts.core.bean.InitialHeader;
 
 import java.nio.ByteBuffer;
 
-public class InitialHeaderParser implements Parser<InitialHeader> {
+public class InitialHeaderParser implements Parser<InitialHeader, byte[]> {
     @Override
     public InitialHeader parse(int start, byte[] data) {
         int messageLength;

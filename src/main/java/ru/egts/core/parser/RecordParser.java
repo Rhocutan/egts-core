@@ -5,7 +5,7 @@ import ru.egts.core.bean.SubRecord;
 
 import java.time.temporal.ChronoUnit;
 
-public class RecordParser implements Parser<Record> {
+public class RecordParser implements Parser<Record, byte[]> {
 
     private final static SubRecordParser SUB_RECORD_PARSER = new SubRecordParser();
 

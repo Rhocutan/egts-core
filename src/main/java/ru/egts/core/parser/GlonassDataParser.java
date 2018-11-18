@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Slf4j
-public class GlonassDataParser implements Parser<GlonassData> {
+public class GlonassDataParser implements Parser<GlonassData, byte[]> {
     private final static HeaderParser HEADER_PARSER = new HeaderParser();
     private final static RecordParser RECORD_PARSER = new RecordParser();
 

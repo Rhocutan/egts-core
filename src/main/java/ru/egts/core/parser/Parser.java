@@ -1,19 +1,17 @@
 package ru.egts.core.parser;
 
 
-import ru.egts.core.bean.ParsedObject;
-
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public interface Parser<T extends ParsedObject> {
+public interface Parser<T, P> {
 
     LocalDateTime START_DATE = LocalDateTime.parse("01.01.2010 UTC 00:00:00",
             DateTimeFormatter.ofPattern("dd.MM.yyyy z HH:mm:ss"));
 
-    T parse(int start, byte[] data);
+    T parse(int start, P data);
 
     default long makeLongFromInt(int start, byte[] data) {
         byte[] lat = new byte[8];
