@@ -23,11 +23,11 @@ public class PosData implements SubRecordData {
     private boolean fix;
     private boolean vld;
 
-    private int speed;
-    private byte direction;
+    private double speed;
+    private int direction;
     private byte[] odometr;
     private byte digitalInputs;
-    private byte source;
+    private int source;
     private byte[] altitude;
     private short sourceData;
 }

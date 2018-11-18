@@ -19,7 +19,7 @@ public class PosDataParser implements Parser<PosData, byte[]> {
         posDataBuilder.lon(BigDecimal.valueOf(makeLongFromInt(start + 8, data) * 180.0 / 4294967295L));
 
         // FLG
-        final byte flg = data[12];
+        final byte flg = data[start + 12];
         posDataBuilder.vld((flg & 0x01) == (byte) 0x01);
         posDataBuilder.fix(((flg >>> 1) & 0x01) == (byte) 0x01);
         posDataBuilder.cs(((flg >>> 2) & 0x01) == (byte) 0x01);
@@ -31,11 +31,15 @@ public class PosDataParser implements Parser<PosData, byte[]> {
 
         // only eight last Bits are a speed value
         int speed = makeIntFromShort(start + 13, data);
-        speed <<= 18;
-        speed >>>= 18;
+        /**
+         * byte[] lat = new byte[] {(byte)data[start+13], (byte) (data[start + 14] & 0x3F), 0, 0};
+         *  ByteBuffer.wrap(lat).order(ByteOrder.LITTLE_ENDIAN).getInt() ;
+         */
+        speed <<= 2;
+        speed >>>= 2;
         posDataBuilder.speed(speed);
 
-        posDataBuilder.direction(data[start + 15]);
+        posDataBuilder.direction(unsignedByte(data[start + 15]));
 
         return posDataBuilder.build();
     }
