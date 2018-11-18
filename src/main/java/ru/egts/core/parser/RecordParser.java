@@ -21,7 +21,8 @@ public class RecordParser implements Parser<Record, byte[]> {
         recordBuilder.obfe(obfe);
         boolean evfe = ((rfl >>> 1) & 0x01) == (byte) 0x01;
         recordBuilder.evfe(evfe);
-        recordBuilder.tmfe(((rfl >>> 2) & 0x01) == (byte) 0x01);
+        boolean tmfe = ((rfl >>> 2) & 0x01) == (byte) 0x01;
+        recordBuilder.tmfe(tmfe);
 
         byte[] rpp = new byte[] {
                 (byte) ((rfl >>> 5) & 0x01),
@@ -36,7 +37,7 @@ public class RecordParser implements Parser<Record, byte[]> {
         recordBuilder.ssod(ssod);
 
         int index = 5;
-        if (ssod && !rsod) {
+        if (obfe) {
             recordBuilder.objectId(makeLongFromInt(start + index, data));
             index += 4;
         }
@@ -44,7 +45,7 @@ public class RecordParser implements Parser<Record, byte[]> {
             recordBuilder.eventId(makeLongFromInt(start + index, data));
             index += 4;
         }
-        if (obfe) {
+        if (tmfe) {
             recordBuilder.time(START_DATE.plus(makeLongFromInt(start + index, data), ChronoUnit.SECONDS));
             index += 4;
         }

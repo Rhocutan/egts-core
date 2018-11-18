@@ -7,7 +7,7 @@ public class SubRecordParser implements Parser<SubRecord, byte[]> {
     @Override
     public SubRecord parse(int start, byte[] data) {
         final SubRecord.SubRecordBuilder subRecordSubRecord = SubRecord.builder();
-        final int subrecordType =  unsignedByte(data[start]);
+        final int subrecordType = unsignedByte(data[start]);
         subRecordSubRecord.subrecordType(subrecordType);
         subRecordSubRecord.subrecordLength(makeIntFromShort(start + 1, data));
 

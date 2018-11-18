@@ -10,6 +10,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Base64;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -33,6 +34,19 @@ public class GlonassDataParserTest {
 
             assertThat(glonassData.getHeaderInfo(), Matchers.notNullValue());
         }
+
+    }
+
+    @Test
+    public void parse2() throws IOException {
+        GlonassDataParser parser = new GlonassDataParser();
+
+        GlonassData glonassData = parser.parse(0, Base64.getDecoder().decode(
+                "AQAACwAoAAEAAaUZAEEKhQPZA9loXrQQAQEBFgAD2QPZAzHUODYxNjkzMDMzMTk2MzQ2Kkw=")
+        );
+
+        assertThat(glonassData.getHeaderInfo(), Matchers.notNullValue());
+
 
     }
 }
