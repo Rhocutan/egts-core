@@ -3,7 +3,7 @@ package ru.egts.core.parser;
 
 import ru.egts.core.bean.service.teledata.Tds;
 
-public class TdsParser implements Parser<Tds> {
+public class TdsParser implements Parser<Tds, byte[]> {
     @Override
     public Tds parse(int start, byte[] data) {
         final boolean tnde = ((byte) (data[start] >>> 7) & 0x01) > 0;

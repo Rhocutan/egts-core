@@ -2,7 +2,7 @@ package ru.egts.core.parser;
 
 import ru.egts.core.bean.HeaderInfo;
 
-public class HeaderParser implements Parser<HeaderInfo> {
+public class HeaderParser implements Parser<HeaderInfo, byte[]> {
 
     @Override
     public HeaderInfo parse(int start, byte[] data) {

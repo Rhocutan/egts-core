@@ -6,7 +6,7 @@ import ru.egts.core.bean.service.teledata.PosData;
 import java.math.BigDecimal;
 import java.time.temporal.ChronoUnit;
 
-public class PosDataParser implements Parser<PosData> {
+public class PosDataParser implements Parser<PosData, byte[]> {
 
     @Override
     public PosData parse(int start, byte[] data) {

@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toList;
 
-public class TrackDataParser implements Parser<TrackData> {
+public class TrackDataParser implements Parser<TrackData, byte[]> {
 
     private static final TdsParser TDS_PARSER = new TdsParser();
 
