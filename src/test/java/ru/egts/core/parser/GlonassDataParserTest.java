@@ -45,7 +45,12 @@ public class GlonassDataParserTest {
         GlonassData glonassData = parser.parse(0, bytes);
 
         assertThat(glonassData.getHeaderInfo(), Matchers.notNullValue());
+    }
 
-
+    @Test
+    public void parse3() throws IOException {
+        GlonassDataParser parser = new GlonassDataParser();
+        assertThat(parser.intToUnsignedShortBytes(1), Matchers.is(new byte[]{(byte) 0x01, (byte) 0x00}));
+        assertThat(parser.intToUnsignedShortBytes(30828), Matchers.is(new byte[]{(byte) 0x6C, (byte) 0x78}));
     }
 }
