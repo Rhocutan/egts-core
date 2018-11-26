@@ -36,7 +36,7 @@ public class ResponseParser implements Parser<byte[], GlonassData> {
                 bos.write(intTounsignedIByte(response.getHeaderInfo().getHeaderEncoding()));
 
                 // frame data length
-                final int size = 3 * response.getRecords().size() + 3;
+                final int size = 3 * response.getRecords().size() + 3 + 1;
                 bos.write(intToUnsignedShortBytes(size));
 
                 // package id
