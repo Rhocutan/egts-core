@@ -48,6 +48,8 @@ public class GlonassDataParser implements Parser<GlonassData, byte[]> {
             recordsSize += record.getSize();
         }
 
+        builder.sfrcs(makeIntFromShort(headerInfo.getHeaderLength() + dataLength, data));
+
         return builder.build();
     }
 }

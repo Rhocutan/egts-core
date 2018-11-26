@@ -41,10 +41,8 @@ public class GlonassDataParserTest {
     public void parse2() throws IOException {
         GlonassDataParser parser = new GlonassDataParser();
 
-        byte[] bytes = Base64.getDecoder().decode(
-                "AQAACwAoAAEAAaUZAEEKhQPZA9loXrQQAQEBFgAD2QPZAzHUODYxNjkzMDMzMTk2MzQ2Kkw=");
+        byte[] bytes = Base64.getDecoder().decode("AQAACwAoAAEAAaUZAEEKhQPZA9loXrQQAQEBFgAD2QPZAzHUODYxNjkzMDMzMTk2MzQ2Kkw=");
         GlonassData glonassData = parser.parse(0, bytes);
-
 
         assertThat(glonassData.getHeaderInfo(), Matchers.notNullValue());
 

@@ -40,7 +40,7 @@ public class CRC8 {
     };
 
     public static int crc8(byte[] data, int length) {
-        int crc = (int) 0xFF & 0xFF;
+        int crc = 0xFF & 0xFF;
         for (int i = length; i > 0; i--) {
             crc = CRC8Table[crc ^ (data[length - i] & 0xFF)] & 0xFF;
         }

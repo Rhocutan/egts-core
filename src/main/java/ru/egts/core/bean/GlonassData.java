@@ -25,5 +25,7 @@ public class GlonassData implements ParsedObject {
     @Builder.Default
     private Collection<ServiceRecord> records = Collections.emptyList();
 
+    private int sfrcs;
+
     private short servicesFrameDataCheckSum;
 }
