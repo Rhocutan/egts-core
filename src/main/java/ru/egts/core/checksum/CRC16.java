@@ -40,11 +40,11 @@ public class CRC16 {
     };
 
     public static int crc16(byte[] data, int length) {
-        int crc = 0xFFFF & 0xFFFF;
+        int crc = 0xFFFF;
         for (int i = length; i > 0; i--) {
-            crc = ((crc << 8) & 0xFFFF) ^ (CRC16Table[(crc >> 8) ^ (data[length - i] & 0xFF)]);
+            crc = ((crc << 8) & 0xFFFF) ^ (CRC16Table[((crc >> 8) & 0xFF) ^ (data[length - i] & 0xFF)]);
         }
-        return crc;
+        return  crc;
     }
 
 }
