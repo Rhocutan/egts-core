@@ -64,7 +64,7 @@ public class ResponseParser implements Parser<byte[], GlonassData> {
                     final Response record = (Response) r;
                     try {
                         bos.write(intToUnsignedShortBytes(record.getResponsePacketId()));
-                        bos.write((byte) 0x01);
+                        bos.write(record.getProcessingResult());
                     } catch (IOException e) {
                         log.error(e.getMessage(), e);
                     }
