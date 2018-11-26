@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Builder
 @Data
-public class Record implements ParsedObject {
+public class Record implements ParsedObject, ServiceRecord {
 
     private boolean persisted;
 

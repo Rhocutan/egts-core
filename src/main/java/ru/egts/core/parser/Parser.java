@@ -29,4 +29,19 @@ public interface Parser<T, P> {
         return b & 0xFF;
     }
 
+    default byte[] intToUnsignedShortBytes(int number) {
+        byte[] lat = new byte[4];
+        ByteBuffer.wrap(lat).order(ByteOrder.LITTLE_ENDIAN).putInt(number);
+
+        byte[] result = new byte[2];
+        System.arraycopy(lat, 0, result, 0 , 2);
+        return result;
+    }
+
+    default byte intTounsignedIByte(int number) {
+        byte[] lat = new byte[4];
+        ByteBuffer.wrap(lat).order(ByteOrder.LITTLE_ENDIAN).putInt(number);
+        return lat[0];
+    }
+
 }

@@ -1,5 +1,6 @@
 package ru.egts.core.bean;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -15,5 +16,14 @@ public class HeaderInfo implements ParsedObject {
 
     private int packetIdentifier;
 
-    private int packetType;
+    private PacketType packetType;
+
+    @AllArgsConstructor
+    public enum PacketType {
+        RESPONSE(0),
+        APPDATA(1),
+        SIGNED_APPDATA(2);
+        @Getter
+        private final int code;
+    }
 }

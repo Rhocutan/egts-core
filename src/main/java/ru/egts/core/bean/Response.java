@@ -8,9 +8,10 @@ import java.util.Collections;
 
 @Builder
 @Getter
-public class Response {
+public class Response implements ParsedObject, ServiceRecord {
     private int responsePacketId;
     private byte processingResult;
+
     @Builder.Default
     private Collection<RecordResponse> records = Collections.emptyList();
 }

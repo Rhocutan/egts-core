@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import ru.egts.core.bean.GlonassData;
 import ru.egts.core.bean.HeaderInfo;
 import ru.egts.core.bean.Record;
+import ru.egts.core.bean.ServiceRecord;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -36,7 +37,7 @@ public class GlonassDataParser implements Parser<GlonassData, byte[]> {
             throw new IllegalStateException(message);
         }
 
-        final List<Record> records = new LinkedList<>();
+        final List<ServiceRecord> records = new LinkedList<>();
         builder.records(records);
 
         final int dataLength = headerInfo.getDataLength();
