@@ -5,7 +5,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import java.util.Base64;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -13,28 +14,106 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class CRC16Test {
 
     @Test
-    public void crc16() {
+    public void crc16_1() {
         byte[] data = {
-                (byte) 0x19, (byte) 0x00, (byte) 0x01, (byte) 0x00,
-                (byte) 0x81, (byte) 0x32, (byte) 0x00, (byte) 0x00,
-                (byte) 0x00, (byte) 0x01, (byte) 0x01, (byte) 0x01,
-                (byte) 0x16, (byte) 0x00, (byte) 0x32, (byte) 0x00,
-
-                (byte) 0x00, (byte) 0x00, (byte) 0x42, (byte) 0x38,
-                (byte) 0x36, (byte) 0x38, (byte) 0x32, (byte) 0x30,
-                (byte) 0x34, (byte) 0x30, (byte) 0x30, (byte) 0x32,
-                (byte) 0x32, (byte) 0x33, (byte) 0x36, (byte) 0x36,
-                (byte) 0x34, (byte) 0x33, (byte) 0x00, (byte) 0x01};
+                (byte)0x24,
+                (byte)0x00,
+                (byte)0x02,
+                (byte)0x00,
+                (byte)0x81,
+                (byte)0x32,
+                (byte)0x00,
+                (byte)0x00,
+                (byte)0x00,
+                (byte)0x02,
+                (byte)0x02,
+                (byte)0x10,
+                (byte)0x1A,
+                (byte)0x00,
+                (byte)0x3A,
+                (byte)0xDF,
+                (byte)0x15,
+                (byte)0x0C,
+                (byte)0x38,
+                (byte)0x26,
+                (byte)0xC2,
+                (byte)0x9D,
+                (byte)0x56,
+                (byte)0x9D,
+                (byte)0xED,
+                (byte)0x5C,
+                (byte)0x83,
+                (byte)0x00,
+                (byte)0x00,
+                (byte)0xC7,
+                (byte)0x06,
+                (byte)0x00,
+                (byte)0x00,
+                (byte)0x00,
+                (byte)0x00,
+                (byte)0x24,
+                (byte)0x00,
+                (byte)0x00,
+                (byte)0x00,
+                (byte)0x00,
+                (byte)0x11,
+                (byte)0x04,
+                (byte)0x00,
+                (byte)0x0A,
+                (byte)0x00,
+                (byte)0x00,
+                (byte)0x05};
         int value = CRC16.crc16(data, data.length);
-        assertThat(value, Matchers.is(23923));
+
+        byte[] g = new byte[]{(byte)0x6C, (byte)0x78};
+        short aShort = ByteBuffer.wrap(g).order(ByteOrder.LITTLE_ENDIAN).getShort();
+        assertThat((short) value, Matchers.is(aShort));
     }
 
     @Test
-    public void crc16_2() {
-        byte[] bytes = Base64.getDecoder().decode("AEEKhQPZA9loXrQQAQEBFgAD2QPZAzHUODYxNjkzMDMzMTk2MzQ2Kg==");
+    public void crc16() {
+        byte[] data = {
+                (byte)0x19,
+                (byte)0x00,
+                (byte)0x01,
+                (byte)0x00,
+                (byte)0x81,
+                (byte)0x32,
+                (byte)0x00,
+                (byte)0x00,
+                (byte)0x00,
+                (byte)0x01,
+                (byte)0x01,
+                (byte)0x01,
+                (byte)0x16,
+                (byte)0x00,
+                (byte)0x32,
+                (byte)0x00,
+                (byte)0x00,
+                (byte)0x00,
+                (byte)0x42,
+                (byte)0x38,
+                (byte)0x36,
+                (byte)0x38,
+                (byte)0x32,
+                (byte)0x30,
+                (byte)0x34,
+                (byte)0x30,
+                (byte)0x30,
+                (byte)0x32,
+                (byte)0x32,
+                (byte)0x33,
+                (byte)0x36,
+                (byte)0x36,
+                (byte)0x34,
+                (byte)0x33,
+                (byte)0x00,
+                (byte)0x01};
+        int value = CRC16.crc16(data, data.length);
 
-        int value = CRC16.crc16(bytes, bytes.length);
-        assertThat(value, Matchers.is(19498));
+        byte[] g = new byte[]{(byte)0x5D, (byte)0x73};
+        short aShort = ByteBuffer.wrap(g).order(ByteOrder.LITTLE_ENDIAN).getShort();
+        assertThat((short) value, Matchers.is(aShort));
     }
 
 
